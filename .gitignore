@@ -1,2 +1,2 @@
-.idea/*
-.zig-cache/*
+.idea/
+.zig-cache/
