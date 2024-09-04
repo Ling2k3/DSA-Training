@@ -6,7 +6,8 @@ pub fn SelectionSort(comptime T: type, arr: []T) !void {
         return Error.ArrayError.IndexOutOfBound;
     } else if (arr.len == 1) {
         return;
-    } else { for (arr, 0..) |_, ind| {
+    } else {
+        for (arr, 0..) |_, ind| {
             var minIndex: usize = 0;
             var i: usize = ind;
             var isChange: bool = false;
@@ -49,12 +50,15 @@ pub fn InsertionSort(comptime T: type, arr: []T) !void {
         return;
     } else {
         for (1..arr.len) |ind| {
-            var j = ind - 1;
+            var j = ind;
             const key = arr[ind];
-            while (j >= 0 and arr[j] > key) : (j -= 1) {
-                arr[j + 1] = arr[j];
+            if (j == 0 and arr[j] > key) {
+                arr[j] = arr[j - 1];
             }
-            arr[j + 1] = key;
+            while (j > 0 and arr[j - 1] > key) : (j -= 1) {
+                arr[j] = arr[j - 1];
+            }
+            arr[j] = key;
         }
         return;
     }
@@ -121,7 +125,7 @@ pub fn quickSortHelper(comptime T: type, arr: []T, low: usize, high: usize) usiz
                 util.swap(T, &arr[index_smaller - 1], &arr[ind]);
             } else {
                 util.swap(T, &arr[index_smaller], &arr[ind]);
-                index_smaller +=1;
+                index_smaller += 1;
             }
         }
     }

@@ -2,7 +2,11 @@
 <module type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
-    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/.zig-cache/o/4c5a6eaffdac473e6ebd27ec50d46f04" />
+      <excludeFolder url="file://$MODULE_DIR$/.zig-cache/o/988e350259a4f3d6f7e2369f5701f711" />
+      <excludeFolder url="file://$MODULE_DIR$/.zig-cache/tmp" />
+    </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>

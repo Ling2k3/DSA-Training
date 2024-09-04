@@ -4,3 +4,10 @@ pub fn swap(comptime T: type, a: *T, b: *T) void {
     a.* = b.*;
     b.* = temp;
 }
+pub fn min(comptime T: type, a: T, b: T) T {
+    if(a < b) {
+        return a;
+    } else {
+        return b;
+    }
+}

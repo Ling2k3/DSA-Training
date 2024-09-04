@@ -1,6 +1,6 @@
 const std = @import("std");
 const testing = std.testing;
-const sort = @import("algo/sorting/normal.zig");
+const search = @import("algo/searching/basic.zig");
 const print = std.debug.print;
 
 export fn add(a: i32, b: i32) i32 {
@@ -8,7 +8,7 @@ export fn add(a: i32, b: i32) i32 {
 }
 
 test "basic add functionality" {
-    var arr = [_]i32{4,2,1,3, 6, 5, 4};
-    sort.RecursiveInsertionSort(i32, &arr, 1);
-    print("{any}\n", .{arr});
+    var arr = [_]i32{1, 2, 3, 4, 4, 5, 6};
+    const rs = search.TernarySearch(i32, &arr, 4, 0, arr.len-1);
+    print("{any}\n", .{rs});
 }
