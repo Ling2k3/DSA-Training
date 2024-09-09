@@ -8,7 +8,7 @@ export fn add(a: i32, b: i32) i32 {
 }
 
 test "basic add functionality" {
-    var arr = [_]i32{1, 2, 3, 4, 4, 5, 6};
-    const rs = search.TernarySearch(i32, &arr, 4, 0, arr.len-1);
+    var arr = [_]u64{1, 2, 3, 4, 4, 5, 6};
+    const rs = search.InterpolationSearch(@TypeOf(arr[0]), &arr, 4, 0, arr.len-1);
     print("{any}\n", .{rs});
 }
