@@ -1,8 +1,7 @@
 const std = @import("std");
 const Error = @import("../../error.zig");
 const util = @import("../../util.zig"); const math = std.math; pub fn BinarySearch(comptime T: type, arr: []T, key: T, low: usize, high: usize) usize {
-    if (arr.len <= 1) {
-        return 0;
+    if (arr.len <= 1) { return 0;
     }
     if (low <= high) {
         const mid = (high + low) / 2;
