@@ -116,7 +116,6 @@ pub fn MergeSort(comptime T: type, arr: []T, low: usize, high: usize, alloc: std
 pub fn quickSortHelper(comptime T: type, arr: []T, low: usize, high: usize) usize {
     var index_smaller: usize = low;
     const pivot = arr[high];
-
     // loop from low to high - 1
     for (low..high) |ind| {
         if (arr[ind] < pivot) {
@@ -141,4 +140,37 @@ pub fn QuickSort(comptime T: type, arr: []T, low: usize, high: usize) void {
         QuickSort(T, arr, low, ind - 1);
     }
     QuickSort(T, arr, ind + 1, high);
+}
+fn heapify(comptime T: type, arr: []T, n: usize, i: T) void {
+    const i_: usize = @bitCast(i);
+    var largest = i;
+    const l = 2 * i + 1;
+    const r = 2 * i + 2;
+    if (l < n and arr[@bitCast(l)] > arr[@bitCast(largest)]) {
+        largest = l;
+    }
+    if (r < n and arr[@bitCast(r)] > arr[@bitCast(largest)]) {
+        largest = r;
+    }
+    if (largest != i) {
+        util.swap(T, &arr[@bitCast(largest)], &arr[i_]);
+        heapify(T, arr, n, largest);
+    }
+}
+pub fn HeapSort(comptime T: type, arr: []T) void {
+    const l_: T = @intCast(arr.len);
+    const l: usize = arr.len;
+    if (l_ <= 1) {
+        return;
+    }
+    var i: T = @divTrunc(l_, 2) - 1;
+    var j: T = l_ - 1;
+    while (i >= 0) : (i -= 1) {
+        heapify(T, arr, l, i);
+    }
+    while (j > 0) : (j -= 1) {
+        const j_: usize = @bitCast(j);
+        util.swap(T, &arr[0], &arr[j_]);
+        heapify(T, arr, j_, 0);
+    }
 }

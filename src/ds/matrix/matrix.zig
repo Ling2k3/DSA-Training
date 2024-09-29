@@ -1,6 +1,5 @@
 const std = @import("std");
 const print = std.debug.print;
-
 pub fn TraverseCompleteMatrix(comptime T: type, mat: [][]T, key: T) void {
     if (mat.len == 0 or mat.len == 1) {
         return;

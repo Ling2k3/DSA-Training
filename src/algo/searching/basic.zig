@@ -1,7 +1,10 @@
 const std = @import("std");
 const Error = @import("../../error.zig");
-const util = @import("../../util.zig"); const math = std.math; pub fn BinarySearch(comptime T: type, arr: []T, key: T, low: usize, high: usize) usize {
-    if (arr.len <= 1) { return 0;
+const util = @import("../../util.zig");
+const math = std.math;
+pub fn BinarySearch(comptime T: type, arr: []T, key: T, low: usize, high: usize) usize {
+    if (arr.len <= 1) {
+        return 0;
     }
     if (low <= high) {
         const mid = (high + low) / 2;
@@ -20,7 +23,8 @@ pub fn MetaBinarySearch(comptime T: type, arr: []T, key: T) usize {
         return 0;
     }
     var n = arr.len;
-    while (n > 0) { const mid = util.min(usize, arr.len - 1, n / 2);
+    while (n > 0) {
+        const mid = util.min(usize, arr.len - 1, n / 2);
         if (arr[mid] == key) {
             return mid;
         } else if (arr[mid] < key) {
@@ -56,22 +60,21 @@ pub fn TernarySearch(comptime T: type, arr: []T, key: T, low: usize, high: usize
     }
     return 0;
 }
-pub fn InterpolationSearch(comptime T:type, arr: []T, key: T, low: T, high: T) T {
-    if(arr.len <= 1 or T == i8 or T == i16 or T == i32 or T == i64 or T == i128 ) {
+pub fn InterpolationSearch(comptime T: type, arr: []T, key: T, low: T, high: T) T {
+    if (arr.len <= 1 or T == i8 or T == i16 or T == i32 or T == i64 or T == i128) {
         return 0;
     }
-    if(low <= high and key <= arr[high] and key >= arr[low]) {
+    if (low <= high and key <= arr[high] and key >= arr[low]) {
         const pos = low + (key - arr[low]) * (high - low) / (arr[high] - arr[low]);
-        if(key == arr[pos]) {
+        if (key == arr[pos]) {
             return pos;
         }
-        if(key > arr[pos]) {
-            return InterpolationSearch(T, arr, key, pos+1, high);
+        if (key > arr[pos]) {
+            return InterpolationSearch(T, arr, key, pos + 1, high);
         }
-        if(key < arr[pos]) {
-            return InterpolationSearch(T, arr, key, low, pos-1);
+        if (key < arr[pos]) {
+            return InterpolationSearch(T, arr, key, low, pos - 1);
         }
-
     }
     return 0;
 }
